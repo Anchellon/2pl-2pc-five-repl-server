@@ -1,0 +1,14 @@
+syntax="proto3";
+import "txn.proto";
+
+option java_package = "org.dictionary";
+option java_multiple_files= true;
+option java_outer_classname = "LockProto";
+
+service LockService{
+  rpc lock(TxnKV) returns(Lock);
+  rpc unlock(TxnKV) returns(Lock);
+}
+message Lock{
+  bool isLocked =1;
+}

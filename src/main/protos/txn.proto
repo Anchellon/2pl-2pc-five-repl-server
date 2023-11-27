@@ -1,0 +1,25 @@
+syntax="proto3";
+
+import "dictionary.proto";
+
+option java_package = "org.dictionary";
+option java_multiple_files= true;
+option java_outer_classname = "TxnProto";
+
+service TxnService{
+  rpc copy(TxnKV) returns(Status);
+  rpc doCommit(Txn) returns(Status);
+  rpc doAbort(Txn) returns(Status);
+  rpc get(KeyValue) returns(Status) ;
+  rpc delete(KeyValue) returns(Status);
+}
+message Txn{
+  string txn = 1;
+}
+message TxnKV{
+  string key = 1;
+  string value = 2;
+  string address =3;
+  Txn txn = 4;
+}
+
