@@ -30,11 +30,13 @@ public class LockService extends LockServiceGrpc.LockServiceImplBase {
         responseObserver.onCompleted();
     }
 
-    public void unlock(KeyValue kv,StreamObserver<Lock> responseObserver){
-        if(lockManager.get(kv.getKey()) != null){
+    public void unlock(TxnKV kv,StreamObserver<Lock> responseObserver){
+        System.out.println("Before Unlock " + lockManager);
+        if(lockManager.containsKey(kv.getKey())){
             lockManager.remove(kv.getKey());
         }
         Lock lock = Lock.newBuilder().setIsLocked(false).build();
+        System.out.println("After Unlock " + lockManager);
         responseObserver.onNext(lock);
         responseObserver.onCompleted();
     }

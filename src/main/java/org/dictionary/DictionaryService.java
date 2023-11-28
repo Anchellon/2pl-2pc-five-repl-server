@@ -29,7 +29,7 @@ public class DictionaryService  extends dictionaryServiceGrpc.dictionaryServiceI
         logger.info("PUT fn Call Initiated");
         String key = request.getKey();
         String value = request.getValue();
-        Txn txn = openTransatction("localhost:"+ PORT_NUM,String.valueOf(tid++));
+        Txn txn = openTransatction("localhost:"+ PORT_NUM,String.valueOf(this.tid++));
         TxnKV txnKV = TxnKV.newBuilder().setTxn(txn).setKey(key).setValue(value).build();
         LockingService lockingSvc = new LockingServiceImpl(lockManager, permanentDbStore,txn,logger, PORT_NUM) ;
         try {
@@ -58,7 +58,11 @@ public class DictionaryService  extends dictionaryServiceGrpc.dictionaryServiceI
         }else {
             logger.info("Replication fn Call successfully Completed");
         }
-        lockingSvc.releaseLock(txnKV);
+        try {
+            lockingSvc.releaseLock(txnKV);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         responseObserver.onNext(result);
         responseObserver.onCompleted();
     }
@@ -80,7 +84,7 @@ public class DictionaryService  extends dictionaryServiceGrpc.dictionaryServiceI
         }
         ReplicationService replSvc = new ReplicationServiceImpl(permanentDbStore, volatileDbStore, txn.getTxn(), logger, String.valueOf(PORT_NUM));
         List<String> useAddr = new ArrayList<>(addresses);
-        useAddr.remove(PORT_NUM);
+        useAddr.remove(useAddr.indexOf(String.valueOf(PORT_NUM)));
 
 
         Status result = null;
@@ -95,7 +99,11 @@ public class DictionaryService  extends dictionaryServiceGrpc.dictionaryServiceI
         }else {
             logger.info("DELETE fn Call successfully Completed");
         }
-        lockingSvc.releaseLock(txnKV);
+        try {
+            lockingSvc.releaseLock(txnKV);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         responseObserver.onNext(result);
         responseObserver.onCompleted();
     }

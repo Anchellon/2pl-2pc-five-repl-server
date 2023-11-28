@@ -41,6 +41,20 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
     }
+    public void delete(TxnKV txnKV,io.grpc.stub.StreamObserver<Status> responseObserver){
+        System.out.println("Recieved delete request" + txnKV);
+        this.volatileDbStore.put(txnKV.getTxn(),List.of(txnKV.getKey(),txnKV.getValue(),"DEL"));
+        Status.Builder status = Status.newBuilder();
+        status.setStatus("SUCCESS")
+                .setKey(txnKV.getKey())
+                .setValue(txnKV.getValue())
+                .setMessage("DeletePrepared@"+PORT_NUM);
+        System.out.println((status.build()));
+        System.out.println(volatileDbStore);
+        System.out.println("Delete request Successful");
+        responseObserver.onNext(status.build());
+        responseObserver.onCompleted();
+    }
 //    works
     public void doCommit(Txn txn,io.grpc.stub.StreamObserver<Status> responseObserver){
         Status.Builder status = Status.newBuilder();
@@ -55,6 +69,7 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
                 status.setMessage("SUCCESS")
                         .setKey(reccord.get(0))
                         .setValue(reccord.get(1));
+
             }else{ // Delete commit
                 this.permanentDbStore.remove(reccord.get(0));
                 status.setMessage("SUCCESS")

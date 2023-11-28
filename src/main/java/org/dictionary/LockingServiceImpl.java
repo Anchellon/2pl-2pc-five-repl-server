@@ -29,7 +29,7 @@ public class LockingServiceImpl extends LockServiceGrpc.LockServiceImplBase impl
     }
     @Override
     public boolean aquireLock(TxnKV kv,Txn txn) throws InterruptedException, ExecutionException {
-
+        System.out.println(lockManager);
         while(lockManager.get(kv.getKey()) != null);
         ExecutorService execService = Executors.newSingleThreadExecutor();
         ListeningExecutorService lExecService = MoreExecutors.listeningDecorator(execService);
@@ -47,39 +47,21 @@ public class LockingServiceImpl extends LockServiceGrpc.LockServiceImplBase impl
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(1))).usePlaintext().build();
         lockingSvc = LockServiceGrpc.newFutureStub(channel);
         ListenableFuture<Lock> lock2 = lockingSvc.lock(kv);
-        Futures.addCallback(lock1,new Notify(latch), lExecService);
+        Futures.addCallback(lock2,new Notify(latch), lExecService);
 
 
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(2))).usePlaintext().build();
         lockingSvc = LockServiceGrpc.newFutureStub(channel);
         ListenableFuture<Lock> lock3 = lockingSvc.lock(kv);
-        Futures.addCallback(lock1,new Notify(latch), lExecService);
-
-
+        Futures.addCallback(lock3,new Notify(latch), lExecService);
 
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(3))).usePlaintext().build();
         lockingSvc = LockServiceGrpc.newFutureStub(channel);
         ListenableFuture<Lock> lock4 = lockingSvc.lock(kv);
-        Futures.addCallback(lock1,new Notify(latch), lExecService);
+        Futures.addCallback(lock4,new Notify(latch), lExecService);
+
 
         latch.await();
-        ListenableFuture<List<Lock>> lockStat = Futures.allAsList(lock1, lock2, lock3, lock4);
-        Futures.addCallback(lockStat, new FutureCallback<List<Lock>>() {
-            @Override
-            public void onSuccess(@Nullable List<Lock> lockList) {
-                // do on all futures success
-                System.out.println(lockList);
-                resultLock = result.setIsLocked(true).build();
-
-
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                // handle on at least one failure
-            }
-        }, lExecService);
-
 
         lockManager.put(kv.getKey(),txn);
         return true;
@@ -88,48 +70,78 @@ public class LockingServiceImpl extends LockServiceGrpc.LockServiceImplBase impl
     }
 
     @Override
-    public Txn releaseLock(TxnKV kv) {
+    public Txn releaseLock(TxnKV kv) throws InterruptedException {
+//        List<String> useAddr = new ArrayList<>(addresses);
+//        useAddr.remove(String.valueOf(PORT_NUM));
+//        System.out.println("Starting to release Lock");
+//        System.out.println(lockManager);
+//
+//        if(lockManager.containsKey(kv.getKey())){
+//            lockManager.remove(kv.getKey());
+//        }
+//        System.out.print(useAddr);
+//        for(String addr: useAddr){
+//            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
+//            LockServiceGrpc.LockServiceStub lockingSvc = LockServiceGrpc.newStub(channel);
+//            lockingSvc.unlock(kv, new UnlockCallBack());
+//        }
+        latch = new CountDownLatch(4);
+        System.out.println(lockManager);
+
+        ExecutorService execService = Executors.newSingleThreadExecutor();
+        ListeningExecutorService lExecService = MoreExecutors.listeningDecorator(execService);
+
         List<String> useAddr = new ArrayList<>(addresses);
         useAddr.remove(String.valueOf(PORT_NUM));
 
-        if(lockManager.containsKey(kv.getKey())){
-            lockManager.remove(kv.getKey());
-        }
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(0))).usePlaintext().build();
-        LockServiceGrpc.LockServiceStub lockingSvc = LockServiceGrpc.newStub(channel);
-        lockingSvc.unlock(kv,new UnockCallBack());
+
+        LockServiceGrpc.LockServiceFutureStub lockingSvc = LockServiceGrpc.newFutureStub(channel);
+        ListenableFuture<Lock> lock1 = lockingSvc.unlock(kv);
+        Futures.addCallback(lock1,new Notify(latch), lExecService);
 
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(1))).usePlaintext().build();
-        lockingSvc = LockServiceGrpc.newStub(channel);
-        lockingSvc.unlock(kv,new UnockCallBack());
+        lockingSvc = LockServiceGrpc.newFutureStub(channel);
+        ListenableFuture<Lock> lock2 = lockingSvc.unlock(kv);
+        Futures.addCallback(lock2,new Notify(latch), lExecService);
+
 
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(2))).usePlaintext().build();
-        lockingSvc = LockServiceGrpc.newStub(channel);
-        lockingSvc.unlock(kv,new UnockCallBack());
+        lockingSvc = LockServiceGrpc.newFutureStub(channel);
+        ListenableFuture<Lock> lock3 = lockingSvc.unlock(kv);
+        Futures.addCallback(lock3,new Notify(latch), lExecService);
 
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(useAddr.get(3))).usePlaintext().build();
-        lockingSvc = LockServiceGrpc.newStub(channel);
-        lockingSvc.unlock(kv,new UnockCallBack());
+        lockingSvc = LockServiceGrpc.newFutureStub(channel);
+        ListenableFuture<Lock> lock4 = lockingSvc.unlock(kv);
+        Futures.addCallback(lock4,new Notify(latch), lExecService);
 
 
-        return null;
+        latch.await();
+
+        lockManager.remove(kv.getKey());
+
+
+        System.out.println("Released Lock");
+        System.out.println(lockManager);
+        return kv.getTxn();
     }
-    class UnockCallBack implements io.grpc.stub.StreamObserver<Lock> {
-        @Override
-        public void onNext(Lock lock) {
-            System.out.println("Commit Status:" + lock.getIsLocked());
-        }
-
-        @Override
-        public void onError(Throwable throwable) {
-
-        }
-
-        @Override
-        public void onCompleted() {
-            System.out.println("Unlock Request Sent");
-        }
-    }
+//    class UnlockCallBack implements io.grpc.stub.StreamObserver<Lock> {
+//        @Override
+//        public void onNext(Lock lock) {
+//            System.out.println("Commit Status:" + lock.getIsLocked());
+//        }
+//
+//        @Override
+//        public void onError(Throwable throwable) {
+//
+//        }
+//
+//        @Override
+//        public void onCompleted() {
+//            System.out.println("Unlock Request Sent");
+//        }
+//    }
 
     private class Notify implements FutureCallback<Lock> {
         CountDownLatch latch;

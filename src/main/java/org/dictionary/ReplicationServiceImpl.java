@@ -93,16 +93,6 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
 
 
 
-        // result is set in the call back
-
-//        Futures.addCallback(voteResult, new VoteResultGenerator(result), lExecService);
-        System.out.println("*******************************************************");
-
-
-
-        System.out.println("*********i am *************"+stat + "**************HERE**********");
-        System.out.println("*******************************************************");
-
 
 //        PHASE 1 Complete
 //        Moving to PHASE TWO
@@ -126,69 +116,22 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         }else {
 //            doAbort and return false;
 //            Txn.Builder txn = new Txn.newBuilder();
-            latch = new CountDownLatch(4);
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(0))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort1 = txnSvc.doAbort(txn);
+            for(String addr:addresses){
+                channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
+                TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
+                txnCommSvc.doAbort(txn,new CommitCallBack());
+            }
 
-            Futures.addCallback(abort1, new VotePrinter(latch), lExecService);
-
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort2 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort2, new VotePrinter(latch), lExecService);
-
-
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort3 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort3, new VotePrinter(latch), lExecService);
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort4 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort4, new VotePrinter(latch), lExecService);
-            latch.await();
-            ListenableFuture<List<Status>>  abortResult = Futures.allAsList(vote1, vote2, vote3,vote4);
-//            needs Fixing
+            volatileDbStore.remove(txn);
             Status result = Status.newBuilder()
-                    .setStatus("SUCCESS")
+                    .setStatus("ABORT")
                     .setKey(keyValue.getKey())
                     .setValue(keyValue.getValue())
-                    .setMessage("Succesfully added")
+                    .setMessage("Replication Failed.Aborted")
                     .build();
-
-
-
-
-            Futures.addCallback(abortResult, new AbortResultGenerator(result), lExecService);
-            volatileDbStore.remove(txn);
-            if(result.getStatus() == "ABORT_SUCCESS") {
-                result = Status.newBuilder()
-                        .setKey(keyValue.getKey())
-                        .setValue(keyValue.getValue())
-                        .setStatus("FAIL")
-                        .setMessage("Replication Failed")
-                        .build();
-                return result;
-            }else{
-                result = Status.newBuilder()
-                        .setKey(keyValue.getKey())
-                        .setValue(keyValue.getValue())
-                        .setStatus("ABORT_FAIL")
-                        .setMessage("DB is now INCONSISTENT")
-                        .build();
-                return result;
-            }
+            return result;
         }
-
-
-
-
     }
-
     @Override
     public Status delete(List<String> addresses, KeyValue keyValue) throws InterruptedException {
         TxnKV.Builder txnVal = TxnKV.newBuilder();
@@ -214,7 +157,6 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         Futures.addCallback(vote2, new VotePrinter(latch), lExecService);
 
 
-
         channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
         txnSvc = TxnServiceGrpc.newFutureStub(channel);
         ListenableFuture<Status> vote3 = txnSvc.delete(txnVal.build());
@@ -225,89 +167,178 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         ListenableFuture<Status> vote4 = txnSvc.delete(txnVal.build());
         Futures.addCallback(vote4, new VotePrinter(latch), lExecService);
 
-        ListenableFuture<List<Status>>  voteResult = Futures.allAsList(vote1, vote2, vote3,vote4);
-        Status result = Status.newBuilder().build();
-        // result is set in the call back
-
-        Futures.addCallback(voteResult, new VoteResultGenerator(result), lExecService);
+        ListenableFuture<List<Status>> voteResult = Futures.allAsList(vote1, vote2, vote3, vote4);
         latch.await();
+        String poll1, poll2, poll3, poll4;
+        poll1 = null;
+        poll2 = null;
+        poll3 = null;
+        poll4 = null;
+        try {
+            poll1 = vote1.get().getStatus();
+            poll2 = vote2.get().getStatus();
+            poll3 = vote3.get().getStatus();
+            poll4 = vote4.get().getStatus();
+            //            System.out.println(poll1+" " + poll2+" " + poll3+" " +poll4);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         volatileDbStore.put(txn,List.of(keyValue.getKey(), keyValue.getValue(),"DEL"));
+        String stat = null;
+        if(stat!= null && stat == "SUCCESS"){
+            for(String addr:addresses){
+                channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
+                TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
+                txnCommSvc.doCommit(txn,new CommitCallBack());
+            }
 
-//        PHASE 1 Complete
-//        Moving to PHASE TWO
-//        Proceed to sending Do commit command
-        if(result.getStatus() == "SUCCESS"){
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
-            TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
-            txnCommSvc.doCommit(txn,new CommitCallBack());
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
-            txnCommSvc = TxnServiceGrpc.newStub(channel);
-            txnCommSvc.doCommit(txn,new CommitCallBack());
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
-            txnCommSvc = TxnServiceGrpc.newStub(channel);
-            txnCommSvc.doCommit(txn,new CommitCallBack());
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(4))).usePlaintext().build();
-            txnCommSvc = TxnServiceGrpc.newStub(channel);
-            txnCommSvc.doCommit(txn,new CommitCallBack());
             permanentDbStore.remove(keyValue.getKey());
+            Status result = Status.newBuilder()
+                    .setStatus("SUCCESS")
+                    .setKey(keyValue.getKey())
+                    .setValue(keyValue.getValue())
+                    .setMessage("Succesfully deleted")
+                    .build();
 
             return result;
         }else {
 //            doAbort and return false;
 //            Txn.Builder txn = new Txn.newBuilder();
-            latch = new CountDownLatch(4);
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(0))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort1 = txnSvc.doAbort(txn);
-
-            Futures.addCallback(abort1, new VotePrinter(latch), lExecService);
-
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort2 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort2, new VotePrinter(latch), lExecService);
-
-
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort3 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort3, new VotePrinter(latch), lExecService);
-
-            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
-            txnSvc = TxnServiceGrpc.newFutureStub(channel);
-            ListenableFuture<Status> abort4 = txnSvc.doAbort(txn);
-            Futures.addCallback(abort4, new VotePrinter(latch), lExecService);
-            latch.await();
-            ListenableFuture<List<Status>>  abortResult = Futures.allAsList(vote1, vote2, vote3,vote4);
-
-
-
-            Futures.addCallback(abortResult, new AbortResultGenerator(result), lExecService);
-            volatileDbStore.remove(txn);
-            if(result.getStatus() == "ABORT_SUCCESS") {
-                result = Status.newBuilder()
-                        .setKey(keyValue.getKey())
-                        .setValue(keyValue.getValue())
-                        .setStatus("FAIL")
-                        .setMessage("Replication Failed")
-                        .build();
-                return result;
-            }else{
-                result = Status.newBuilder()
-                        .setKey(keyValue.getKey())
-                        .setValue(keyValue.getValue())
-                        .setStatus("ABORT_FAIL")
-                        .setMessage("DB is now INCONSISTENT")
-                        .build();
-                return result;
+            for(String addr:addresses){
+                channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
+                TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
+                txnCommSvc.doAbort(txn,new CommitCallBack());
             }
+
+            volatileDbStore.remove(txn);
+            Status result = Status.newBuilder()
+                    .setStatus("ABORT")
+                    .setKey(keyValue.getKey())
+                    .setValue(keyValue.getValue())
+                    .setMessage("Replication Failed.Aborted")
+                    .build();
+            return result;
         }
     }
+
+
+//        TxnKV.Builder txnVal = TxnKV.newBuilder();
+//        Txn txn = Txn.newBuilder().setTxn(txnId).build();
+//        txnVal.setKey(keyValue.getKey());
+//        txnVal.setValue(keyValue.getValue());
+//        txnVal.setTxn(txn);
+//        txnVal.setAddress(PORT_NUM);
+//
+//        ExecutorService execService = Executors.newSingleThreadExecutor();
+//        ListeningExecutorService lExecService = MoreExecutors.listeningDecorator(execService);
+//
+//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(0))).usePlaintext().build();
+//        TxnServiceGrpc.TxnServiceFutureStub txnSvc =
+//                TxnServiceGrpc.newFutureStub(channel);
+//        ListenableFuture<Status> vote1 = txnSvc.delete(txnVal.build());
+//        Futures.addCallback(vote1, new VotePrinter(latch), lExecService);
+//
+//
+//        channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
+//        txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//        ListenableFuture<Status> vote2 = txnSvc.delete(txnVal.build());
+//        Futures.addCallback(vote2, new VotePrinter(latch), lExecService);
+//
+//
+//
+//        channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
+//        txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//        ListenableFuture<Status> vote3 = txnSvc.delete(txnVal.build());
+//        Futures.addCallback(vote3, new VotePrinter(latch), lExecService);
+//
+//        channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
+//        txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//        Listenabl zeFuture<Status> vote4 = txnSvc.delete(txnVal.build());
+//        Futures.addCallback(vote4, new VotePrinter(latch), lExecService);
+//
+//        ListenableFuture<List<Status>>  voteResult = Futures.allAsList(vote1, vote2, vote3,vote4);
+//        Status result = Status.newBuilder().build();
+//        // result is set in the call back
+//
+//        Futures.addCallback(voteResult, new VoteResultGenerator(result), lExecService);
+//        latch.await();
+//        volatileDbStore.put(txn,List.of(keyValue.getKey(), keyValue.getValue(),"DEL"));
+//
+////        PHASE 1 Complete
+////        Moving to PHASE TWO
+////        Proceed to sending Do commit command
+//        if(result.getStatus() == "SUCCESS"){
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
+//            TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
+//            txnCommSvc.doCommit(txn,new CommitCallBack());
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
+//            txnCommSvc = TxnServiceGrpc.newStub(channel);
+//            txnCommSvc.doCommit(txn,new CommitCallBack());
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
+//            txnCommSvc = TxnServiceGrpc.newStub(channel);
+//            txnCommSvc.doCommit(txn,new CommitCallBack());
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(4))).usePlaintext().build();
+//            txnCommSvc = TxnServiceGrpc.newStub(channel);
+//            txnCommSvc.doCommit(txn,new CommitCallBack());
+//            permanentDbStore.remove(keyValue.getKey());
+//
+//            return result;
+//        }else {
+////            doAbort and return false;
+////            Txn.Builder txn = new Txn.newBuilder();
+//            latch = new CountDownLatch(4);
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(0))).usePlaintext().build();
+//            txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//            ListenableFuture<Status> abort1 = txnSvc.doAbort(txn);
+//
+//            Futures.addCallback(abort1, new VotePrinter(latch), lExecService);
+//
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(1))).usePlaintext().build();
+//            txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//            ListenableFuture<Status> abort2 = txnSvc.doAbort(txn);
+//            Futures.addCallback(abort2, new VotePrinter(latch), lExecService);
+//
+//
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(2))).usePlaintext().build();
+//            txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//            ListenableFuture<Status> abort3 = txnSvc.doAbort(txn);
+//            Futures.addCallback(abort3, new VotePrinter(latch), lExecService);
+//
+//            channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addresses.get(3))).usePlaintext().build();
+//            txnSvc = TxnServiceGrpc.newFutureStub(channel);
+//            ListenableFuture<Status> abort4 = txnSvc.doAbort(txn);
+//            Futures.addCallback(abort4, new VotePrinter(latch), lExecService);
+//            latch.await();
+//            ListenableFuture<List<Status>>  abortResult = Futures.allAsList(vote1, vote2, vote3,vote4);
+//
+//
+//
+//            Futures.addCallback(abortResult, new AbortResultGenerator(result), lExecService);
+//            volatileDbStore.remove(txn);
+//            if(result.getStatus() == "ABORT_SUCCESS") {
+//                result = Status.newBuilder()
+//                        .setKey(keyValue.getKey())
+//                        .setValue(keyValue.getValue())
+//                        .setStatus("FAIL")
+//                        .setMessage("Replication Failed")
+//                        .build();
+//                return result;
+//            }else{
+//                result = Status.newBuilder()
+//                        .setKey(keyValue.getKey())
+//                        .setValue(keyValue.getValue())
+//                        .setStatus("ABORT_FAIL")
+//                        .setMessage("DB is now INCONSISTENT")
+//                        .build();
+//                return result;
+//            }
+//        }
+//    }
 
 
 
