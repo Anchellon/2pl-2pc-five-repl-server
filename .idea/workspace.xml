@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0cedee3-a320-49b0-a347-84b4c6b72c50" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/protoeditor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/Coordinator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/CoordinatorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/DictionaryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ServerGRPC5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/protos/dictionary.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/protos/lock.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/protos/txn.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/Coordinator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/CoordinatorImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/DictionaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/DictionaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/ServerGRPC5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ServerGRPC5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnProto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnServiceGrpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnServiceGrpc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/protos/txn.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/protos/txn.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +61,124 @@
       <recent name="org.dictionary" />
     </key>
   </component>
+  <component name="RunManager" selected="Application.ServerGRPC5_5">
+    <configuration name="ServerGRPC5" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5002" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5003" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_4" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5004" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_5" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5005" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerGRPC5_51" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
+      <module name="ServerGRPC5" />
+      <option name="PROGRAM_PARAMETERS" value="5005" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dictionary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="ServerGRPC5_1" run_configuration_type="Application" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="ServerGRPC5_2" run_configuration_type="Application" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="ServerGRPC5_3" run_configuration_type="Application" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="ServerGRPC5_4" run_configuration_type="Application" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="ServerGRPC5_1" run_configuration_type="Application" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ServerGRPC5_1" />
+      <item itemvalue="Application.ServerGRPC5_51" />
+      <item itemvalue="Application.ServerGRPC5_2" />
+      <item itemvalue="Application.ServerGRPC5_3" />
+      <item itemvalue="Application.ServerGRPC5_4" />
+      <item itemvalue="Application.ServerGRPC5_5" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ServerGRPC5" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,16 +189,5 @@
       <updated>1700868998139</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/dictionary/ServerGRPC5.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

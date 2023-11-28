@@ -1,6 +1,6 @@
 package org.dictionary;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -9,10 +9,10 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
 
     Map<String, String> permanentDbStore;
     Map<Txn, List<String>> volatileDbStore;
-    Map<String,Boolean> lockManager;
+    Map<String,Txn> lockManager;
     Logger logger;
     int PORT_NUM;
-    TxnService(Map<String,String> dbStore,Map<Txn,List<String>>  volatileDbStore,Map<String,Boolean> lockManager, Logger logger, int PORT_NUM){
+    TxnService(Map<String,String> permanentDbStore,Map<Txn,List<String>>  volatileDbStore,Map<String,Txn> lockManager, Logger logger, int PORT_NUM){
         this.permanentDbStore = permanentDbStore;
         this.volatileDbStore = volatileDbStore;
         this.lockManager = lockManager;
@@ -28,23 +28,39 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
 //    }
 //    added to volatile store
     public void copy(TxnKV txnKV,io.grpc.stub.StreamObserver<Status> responseObserver){
+        System.out.println("Recieved copy request" + txnKV);
         this.volatileDbStore.put(txnKV.getTxn(),List.of(txnKV.getKey(),txnKV.getValue()));
         Status.Builder status = Status.newBuilder();
-        status.setMessage("SUCCESS")
+        status.setStatus("SUCCESS")
                 .setKey(txnKV.getKey())
-                .setValue(txnKV.getValue());
+                .setValue(txnKV.getValue())
+                .setMessage("CopyPrepared@"+PORT_NUM);
+        System.out.println((status.build()));
+        System.out.println(volatileDbStore);
+        System.out.println("Copy request Successful");
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
     }
-
+//    works
     public void doCommit(Txn txn,io.grpc.stub.StreamObserver<Status> responseObserver){
         Status.Builder status = Status.newBuilder();
-        List<String> reccord = this.volatileDbStore.get(txn.getTxn());
+        System.out.println(volatileDbStore);
+        List<String> reccord = this.volatileDbStore.get(txn);
         if(reccord != null) {
-            this.permanentDbStore.put(reccord.get(0), reccord.get(1));
-            status.setMessage("SUCCESS")
-                    .setKey(reccord.get(0))
-                    .setValue(reccord.get(1));
+//            getCommit
+            System.out.println(reccord.size());
+            if(reccord.size() == 2){
+
+                this.permanentDbStore.put(reccord.get(0), reccord.get(1));
+                status.setMessage("SUCCESS")
+                        .setKey(reccord.get(0))
+                        .setValue(reccord.get(1));
+            }else{ // Delete commit
+                this.permanentDbStore.remove(reccord.get(0));
+                status.setMessage("SUCCESS")
+                        .setKey(reccord.get(0))
+                        .setValue(reccord.get(1));
+            }
 
         }else{
             status.setMessage("FAIL:NO SUCH TXN");

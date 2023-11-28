@@ -1,0 +1,316 @@
+Nov 27, 2023 4:13:28 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:13:29 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:14:19 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:14:19 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:33:04 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:33:05 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:34:14 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:34:16 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:41:27 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:41:30 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:46:13 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 4:46:14 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:47:04 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 4:47:05 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:48:08 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 4:48:08 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:49:34 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 4:49:35 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:50:18 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 4:50:19 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 4:59:20 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:01:09 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:01:10 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:02:08 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:02:09 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:02:32 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:04:06 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:04:07 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:04:26 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:05:39 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:05:41 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:06:03 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:09:33 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:09:34 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:10:02 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:19:24 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:19:25 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:19:48 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:21:28 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:21:29 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:21:32 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:21:33 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 5:22:10 PM org.dictionary.DictionaryService get
+INFO: GET fn Call cannot fetch absent Key:anshul
+Nov 27, 2023 5:22:10 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 27, 2023 5:22:10 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed
+Nov 27, 2023 5:25:11 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:25:12 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:26:33 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 5:26:34 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:26:48 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:26:49 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:27:09 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:27:10 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:27:29 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:27:30 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:28:09 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:28:10 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 5:32:11 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5005
+Nov 27, 2023 5:32:12 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:36:08 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:36:09 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:36:46 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:36:48 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 5:38:46 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:38:47 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:38:51 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:38:52 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 5:40:33 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:40:34 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:40:38 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:40:39 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 5:46:51 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 5:46:52 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 5:48:45 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 5:48:47 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 6:35:16 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:35:16 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:35:54 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:41:25 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:41:26 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:41:55 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:41:56 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 6:44:11 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:44:12 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:44:30 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:45:01 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:45:28 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:45:28 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:47:47 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:47:48 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 6:55:24 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:55:25 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:55:54 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 6:55:56 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 6:59:41 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 6:59:41 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 6:59:45 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 7:00:09 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 7:00:10 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:02:19 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 7:02:21 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 7:07:28 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 7:07:29 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:07:53 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 7:07:55 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 7:09:48 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 7:09:49 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:10:12 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 7:10:17 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 7:11:21 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5004
+Nov 27, 2023 7:11:22 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:38:39 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5005
+Nov 27, 2023 7:38:40 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:45:35 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5004
+Nov 27, 2023 7:45:36 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:47:31 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5005
+Nov 27, 2023 7:47:32 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:50:02 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5005
+Nov 27, 2023 7:50:03 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:52:57 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 7:52:58 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:54:30 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 7:54:31 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 7:54:54 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 7:54:56 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 7:58:44 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5002
+Nov 27, 2023 7:58:44 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:00:39 PM org.dictionary.DictionaryService get
+INFO: GET fn Call cannot fetch absent Key:anshul
+Nov 27, 2023 8:00:39 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 27, 2023 8:00:39 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed
+Nov 27, 2023 8:00:49 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:00:50 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:01:53 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:01:54 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:02:17 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:02:18 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:03:40 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:03:41 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:04:09 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:04:10 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:05:06 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5005
+Nov 27, 2023 8:05:07 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:07:37 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:07:38 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:08:00 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:08:01 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:23:51 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:23:51 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:24:27 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:24:29 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:26:01 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:26:02 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:26:36 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:26:37 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 27, 2023 8:28:57 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5001
+Nov 27, 2023 8:28:58 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 27, 2023 8:29:24 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 27, 2023 8:29:26 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed

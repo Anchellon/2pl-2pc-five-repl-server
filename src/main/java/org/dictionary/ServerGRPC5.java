@@ -48,24 +48,26 @@ public class ServerGRPC5 {
         //      Thread Safe Implementation of HashMap
         Map<String, String> localDbStore = new ConcurrentHashMap<>();
         Map<Txn, List<String>> volatileDbStore = new ConcurrentHashMap<>();
-        Map<String,Boolean> lockManager = new ConcurrentHashMap<>();
+        Map<String,Txn> lockManager = new ConcurrentHashMap<>();
 //      gRPC server can handle request in parallel by default as it uses Netty under the hood
         logger.info("Listening on channel using port "+ String.valueOf(PORT_NUM));
         Server server = ServerBuilder.forPort(PORT_NUM)
-                .addService(new DictionaryService(localDbStore,volatileDbStore,lockManager,logger,PORT_NUM))
+
+                .addService(new DictionaryService(localDbStore,volatileDbStore, lockManager,logger,PORT_NUM))
                 .addService(new TxnService(localDbStore,volatileDbStore,lockManager,logger,PORT_NUM))
+                .addService(new LockService(lockManager,logger,PORT_NUM))
                 .build();
-//        try{
-//            server.start();
-//        }catch(IOException e){
-//            logger.info("Server Failed to start");
-//            e.printStackTrace();
-//        }
-//        try {
-//            server.awaitTermination();
-//        }catch(InterruptedException e){
-//            logger.info("Server Interrupted");
-//            e.printStackTrace();
-//        }
+        try{
+            server.start();
+        }catch(IOException e){
+            logger.info("Server Failed to start");
+            e.printStackTrace();
+        }
+        try {
+            server.awaitTermination();
+        }catch(InterruptedException e){
+            logger.info("Server Interrupted");
+            e.printStackTrace();
+        }
     }
 }

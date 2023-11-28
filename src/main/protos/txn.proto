@@ -11,7 +11,7 @@ service TxnService{
   rpc doCommit(Txn) returns(Status);
   rpc doAbort(Txn) returns(Status);
   rpc get(KeyValue) returns(Status) ;
-  rpc delete(KeyValue) returns(Status);
+  rpc delete(TxnKV) returns(Status);
 }
 message Txn{
   string txn = 1;

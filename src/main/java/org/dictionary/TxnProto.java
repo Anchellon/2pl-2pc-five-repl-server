@@ -36,11 +36,11 @@ public final class TxnProto {
       "\n\ttxn.proto\032\020dictionary.proto\"\022\n\003Txn\022\013\n\003" +
       "txn\030\001 \001(\t\"G\n\005TxnKV\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
       "\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\021\n\003txn\030\004 \001(\0132\004.T" +
-      "xn2\223\001\n\nTxnService\022\027\n\004copy\022\006.TxnKV\032\007.Stat" +
+      "xn2\220\001\n\nTxnService\022\027\n\004copy\022\006.TxnKV\032\007.Stat" +
       "us\022\031\n\010doCommit\022\004.Txn\032\007.Status\022\030\n\007doAbort" +
       "\022\004.Txn\032\007.Status\022\031\n\003get\022\t.KeyValue\032\007.Stat" +
-      "us\022\034\n\006delete\022\t.KeyValue\032\007.StatusB\034\n\016org." +
-      "dictionaryB\010TxnProtoP\001b\006proto3"
+      "us\022\031\n\006delete\022\006.TxnKV\032\007.StatusB\034\n\016org.dic" +
+      "tionaryB\010TxnProtoP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

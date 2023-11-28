@@ -155,28 +155,28 @@ public final class TxnServiceGrpc {
      return getGetMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.dictionary.KeyValue,
+  private static volatile io.grpc.MethodDescriptor<org.dictionary.TxnKV,
       org.dictionary.Status> getDeleteMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "delete",
-      requestType = org.dictionary.KeyValue.class,
+      requestType = org.dictionary.TxnKV.class,
       responseType = org.dictionary.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.dictionary.KeyValue,
+  public static io.grpc.MethodDescriptor<org.dictionary.TxnKV,
       org.dictionary.Status> getDeleteMethod() {
-    io.grpc.MethodDescriptor<org.dictionary.KeyValue, org.dictionary.Status> getDeleteMethod;
+    io.grpc.MethodDescriptor<org.dictionary.TxnKV, org.dictionary.Status> getDeleteMethod;
     if ((getDeleteMethod = TxnServiceGrpc.getDeleteMethod) == null) {
       synchronized (TxnServiceGrpc.class) {
         if ((getDeleteMethod = TxnServiceGrpc.getDeleteMethod) == null) {
           TxnServiceGrpc.getDeleteMethod = getDeleteMethod = 
-              io.grpc.MethodDescriptor.<org.dictionary.KeyValue, org.dictionary.Status>newBuilder()
+              io.grpc.MethodDescriptor.<org.dictionary.TxnKV, org.dictionary.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "TxnService", "delete"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.dictionary.KeyValue.getDefaultInstance()))
+                  org.dictionary.TxnKV.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.dictionary.Status.getDefaultInstance()))
                   .setSchemaDescriptor(new TxnServiceMethodDescriptorSupplier("delete"))
@@ -244,7 +244,7 @@ public final class TxnServiceGrpc {
 
     /**
      */
-    public void delete(org.dictionary.KeyValue request,
+    public void delete(org.dictionary.TxnKV request,
         io.grpc.stub.StreamObserver<org.dictionary.Status> responseObserver) {
       asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
     }
@@ -283,7 +283,7 @@ public final class TxnServiceGrpc {
             getDeleteMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                org.dictionary.KeyValue,
+                org.dictionary.TxnKV,
                 org.dictionary.Status>(
                   this, METHODID_DELETE)))
           .build();
@@ -342,7 +342,7 @@ public final class TxnServiceGrpc {
 
     /**
      */
-    public void delete(org.dictionary.KeyValue request,
+    public void delete(org.dictionary.TxnKV request,
         io.grpc.stub.StreamObserver<org.dictionary.Status> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
@@ -397,7 +397,7 @@ public final class TxnServiceGrpc {
 
     /**
      */
-    public org.dictionary.Status delete(org.dictionary.KeyValue request) {
+    public org.dictionary.Status delete(org.dictionary.TxnKV request) {
       return blockingUnaryCall(
           getChannel(), getDeleteMethod(), getCallOptions(), request);
     }
@@ -456,7 +456,7 @@ public final class TxnServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<org.dictionary.Status> delete(
-        org.dictionary.KeyValue request) {
+        org.dictionary.TxnKV request) {
       return futureUnaryCall(
           getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
     }
@@ -502,7 +502,7 @@ public final class TxnServiceGrpc {
               (io.grpc.stub.StreamObserver<org.dictionary.Status>) responseObserver);
           break;
         case METHODID_DELETE:
-          serviceImpl.delete((org.dictionary.KeyValue) request,
+          serviceImpl.delete((org.dictionary.TxnKV) request,
               (io.grpc.stub.StreamObserver<org.dictionary.Status>) responseObserver);
           break;
         default:
