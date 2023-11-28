@@ -103,7 +103,7 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
                 TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
                 txnCommSvc.doCommit(txn,new CommitCallBack());
             }
-
+            volatileDbStore.remove(txn);
             permanentDbStore.put(keyValue.getKey(), keyValue.getValue());
             Status result = Status.newBuilder()
                     .setStatus("SUCCESS")
@@ -136,8 +136,19 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
     public Status delete(List<String> addresses, KeyValue keyValue) throws InterruptedException {
         TxnKV.Builder txnVal = TxnKV.newBuilder();
         Txn txn = Txn.newBuilder().setTxn(txnId).build();
+//        check if db has key to delete?
+        if(!permanentDbStore.containsKey(keyValue.getKey())){
+            Status result = Status.newBuilder()
+                    .setStatus("SUCCESS")
+                    .setKey(keyValue.getKey())
+                    .setValue(keyValue.getValue())
+                    .setMessage("Key to delete Not Present")
+                    .build();
+
+            return result;
+        }
         txnVal.setKey(keyValue.getKey());
-        txnVal.setValue(keyValue.getValue());
+        txnVal.setValue(permanentDbStore.get(keyValue.getKey()));
         txnVal.setTxn(txn);
         txnVal.setAddress(PORT_NUM);
 
@@ -185,13 +196,16 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         }
         volatileDbStore.put(txn,List.of(keyValue.getKey(), keyValue.getValue(),"DEL"));
         String stat = null;
+        if(poll1.equals("SUCCESS") && poll2.equals("SUCCESS") && poll3.equals("SUCCESS") && poll4.equals("SUCCESS")){
+            stat = "SUCCESS";
+        }
         if(stat!= null && stat == "SUCCESS"){
             for(String addr:addresses){
                 channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
                 TxnServiceGrpc.TxnServiceStub txnCommSvc = TxnServiceGrpc.newStub(channel);
                 txnCommSvc.doCommit(txn,new CommitCallBack());
             }
-
+            volatileDbStore.remove(txn);
             permanentDbStore.remove(keyValue.getKey());
             Status result = Status.newBuilder()
                     .setStatus("SUCCESS")

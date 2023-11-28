@@ -11,10 +11,6 @@
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.2" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.3" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.4" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/DictionaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/DictionaryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" afterDir="false" />
     </list>
@@ -60,7 +56,7 @@
       <recent name="org.dictionary" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerGRPC5_2">
+  <component name="RunManager" selected="Application.ServerGRPC5_3">
     <configuration name="ServerGRPC5" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
       <module name="ServerGRPC5" />

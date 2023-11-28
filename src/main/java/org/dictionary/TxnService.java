@@ -79,9 +79,12 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
 
         }else{
             status.setMessage("FAIL:NO SUCH TXN");
-            responseObserver.onNext(status.build());
-            responseObserver.onCompleted();
+
         }
+        this.volatileDbStore.remove(txn);
+        System.out.println("Pending Transations" + volatileDbStore);
+        responseObserver.onNext(status.build());
+        responseObserver.onCompleted();
     }
     public void doAbort(Txn txn,io.grpc.stub.StreamObserver<Status> responseObserver){
         Status.Builder status = Status.newBuilder();
