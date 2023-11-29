@@ -366,7 +366,7 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         @Override
         public void onSuccess(Status result) {
             latch.countDown();
-            System.out.println("Result: " + result);
+//            System.out.println("Result: " + result);
 
         }
 
@@ -382,11 +382,11 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         Status.Builder resultVal = Status.newBuilder();
         VoteResultGenerator(Status result) {
             this.result = result;
-            System.out.println("In Generator");
+//            System.out.println("In Generator");
         }
         @Override
         public void onSuccess(List<Status> statuses) {
-            System.out.println(statuses);
+//            System.out.println(statuses);
             if(
                     statuses.get(0).getStatus() == "SUCCESS" &&
                     statuses.get(1).getStatus() == "SUCCESS" &&
@@ -425,7 +425,7 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
         @Override
         public void onSuccess(Status result) {
             latch.countDown();
-            System.out.println("Result: " + result.getStatus());
+//            System.out.println("Result: " + result.getStatus());
 
         }
 
@@ -479,7 +479,7 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
     class CommitCallBack implements io.grpc.stub.StreamObserver<Status> {
         @Override
         public void onNext(Status status) {
-            System.out.println("Commit Status:" + status.getStatus());
+//            System.out.println("Commit Status:" + status.getStatus());
         }
 
         @Override
@@ -489,7 +489,7 @@ public class ReplicationServiceImpl extends TxnServiceGrpc.TxnServiceImplBase im
 
         @Override
         public void onCompleted() {
-            System.out.println("doCommit Sent");
+//            System.out.println("doCommit Sent");
         }
     }
 }

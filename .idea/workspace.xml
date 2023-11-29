@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ServerGRPC5:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -8,9 +13,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.1" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_gRPClog.1.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.2" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_gRPClog.2.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.3" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_gRPClog.3.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server_gRPClog.4" beforeDir="false" afterPath="$PROJECT_DIR$/Server_gRPClog.4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_gRPClog.4.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server_gRPClog.lck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/LockingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/ReplicationServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dictionary/TxnService.java" afterDir="false" />
     </list>
@@ -44,9 +56,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "onboarding.tips.debug.path": "C:/School/Fall 2023/Distributed Systems/Project/project 3/ServerGRPC5/src/main/java/org/dictionary/Main.java",
-    "project.structure.last.edited": "Global Libraries",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
@@ -56,7 +68,7 @@
       <recent name="org.dictionary" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerGRPC5_3">
+  <component name="RunManager" selected="Application.ServerGRPC5_1">
     <configuration name="ServerGRPC5" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.dictionary.ServerGRPC5" />
       <module name="ServerGRPC5" />
@@ -167,6 +179,7 @@
       <item itemvalue="Application.ServerGRPC5_3" />
       <item itemvalue="Application.ServerGRPC5_4" />
       <item itemvalue="Application.ServerGRPC5_5" />
+      <item itemvalue="Application.ServerGRPC5" />
     </list>
     <recent_temporary>
       <list>

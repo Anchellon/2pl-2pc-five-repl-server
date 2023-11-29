@@ -28,41 +28,41 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
 //    }
 //    added to volatile store
     public void copy(TxnKV txnKV,io.grpc.stub.StreamObserver<Status> responseObserver){
-        System.out.println("Recieved copy request" + txnKV);
+//        System.out.println("Recieved copy request" + txnKV);
         this.volatileDbStore.put(txnKV.getTxn(),List.of(txnKV.getKey(),txnKV.getValue()));
         Status.Builder status = Status.newBuilder();
         status.setStatus("SUCCESS")
                 .setKey(txnKV.getKey())
                 .setValue(txnKV.getValue())
                 .setMessage("CopyPrepared@"+PORT_NUM);
-        System.out.println((status.build()));
-        System.out.println(volatileDbStore);
-        System.out.println("Copy request Successful");
+//        System.out.println((status.build()));
+//        System.out.println(volatileDbStore);
+//        System.out.println("Copy request Successful");
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
     }
     public void delete(TxnKV txnKV,io.grpc.stub.StreamObserver<Status> responseObserver){
-        System.out.println("Recieved delete request" + txnKV);
+//        System.out.println("Recieved delete request" + txnKV);
         this.volatileDbStore.put(txnKV.getTxn(),List.of(txnKV.getKey(),txnKV.getValue(),"DEL"));
         Status.Builder status = Status.newBuilder();
         status.setStatus("SUCCESS")
                 .setKey(txnKV.getKey())
                 .setValue(txnKV.getValue())
                 .setMessage("DeletePrepared@"+PORT_NUM);
-        System.out.println((status.build()));
-        System.out.println(volatileDbStore);
-        System.out.println("Delete request Successful");
+//        System.out.println((status.build()));
+//        System.out.println(volatileDbStore);
+//        System.out.println("Delete request Successful");
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
     }
 //    works
     public void doCommit(Txn txn,io.grpc.stub.StreamObserver<Status> responseObserver){
         Status.Builder status = Status.newBuilder();
-        System.out.println(volatileDbStore);
+//        System.out.println(volatileDbStore);
         List<String> reccord = this.volatileDbStore.get(txn);
         if(reccord != null) {
 //            getCommit
-            System.out.println(reccord.size());
+//            System.out.println(reccord.size());
             if(reccord.size() == 2){
 
                 this.permanentDbStore.put(reccord.get(0), reccord.get(1));
@@ -82,7 +82,7 @@ public class TxnService extends TxnServiceGrpc.TxnServiceImplBase {
 
         }
         this.volatileDbStore.remove(txn);
-        System.out.println("Pending Transations" + volatileDbStore);
+//        System.out.println("Pending Transations" + volatileDbStore);
         responseObserver.onNext(status.build());
         responseObserver.onCompleted();
     }

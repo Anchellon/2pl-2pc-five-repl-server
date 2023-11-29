@@ -31,12 +31,12 @@ public class LockService extends LockServiceGrpc.LockServiceImplBase {
     }
 
     public void unlock(TxnKV kv,StreamObserver<Lock> responseObserver){
-        System.out.println("Before Unlock " + lockManager);
+//        System.out.println("Before Unlock " + lockManager);
         if(lockManager.containsKey(kv.getKey())){
             lockManager.remove(kv.getKey());
         }
         Lock lock = Lock.newBuilder().setIsLocked(false).build();
-        System.out.println("After Unlock " + lockManager);
+//        System.out.println("After Unlock " + lockManager);
         responseObserver.onNext(lock);
         responseObserver.onCompleted();
     }

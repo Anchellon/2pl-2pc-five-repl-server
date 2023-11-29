@@ -494,3 +494,51 @@ Nov 27, 2023 10:50:54 PM org.dictionary.DictionaryService get
 INFO: GET fn Call sending response back
 Nov 27, 2023 10:50:54 PM org.dictionary.DictionaryService get
 INFO: GET fn Call successfully Completed
+Nov 28, 2023 4:22:56 PM org.dictionary.ServerGRPC5 main
+INFO: Listening on channel using port 5003
+Nov 28, 2023 4:22:57 PM org.dictionary.DictionaryService <init>
+INFO: Service Request Initiated
+Nov 28, 2023 4:25:04 PM org.dictionary.DictionaryService get
+INFO: GET fn Call cannot fetch absent Key:anshul
+Nov 28, 2023 4:25:04 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 28, 2023 4:25:04 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed
+Nov 28, 2023 4:27:25 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 28, 2023 4:27:26 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 28, 2023 4:27:27 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 28, 2023 4:27:27 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 28, 2023 4:28:17 PM org.dictionary.DictionaryService get
+INFO: GET fn Call fetched Key:jamie with value:6
+Nov 28, 2023 4:28:17 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 28, 2023 4:28:17 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed
+Nov 28, 2023 4:28:44 PM org.dictionary.DictionaryService get
+INFO: GET fn Call fetched Key:jamie with value:6
+Nov 28, 2023 4:28:44 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 28, 2023 4:28:44 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed
+Nov 28, 2023 4:35:39 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 28, 2023 4:35:39 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 28, 2023 4:41:10 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 28, 2023 4:41:11 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 28, 2023 4:42:32 PM org.dictionary.DictionaryService put
+INFO: PUT fn Call Initiated
+Nov 28, 2023 4:42:32 PM org.dictionary.DictionaryService put
+INFO: Replication fn Call successfully Completed
+Nov 28, 2023 4:42:46 PM org.dictionary.DictionaryService get
+INFO: GET fn Call cannot fetch absent Key:meen
+Nov 28, 2023 4:42:46 PM org.dictionary.DictionaryService get
+INFO: GET fn Call sending response back
+Nov 28, 2023 4:42:46 PM org.dictionary.DictionaryService get
+INFO: GET fn Call successfully Completed

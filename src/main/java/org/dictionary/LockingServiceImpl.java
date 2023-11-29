@@ -71,20 +71,6 @@ public class LockingServiceImpl extends LockServiceGrpc.LockServiceImplBase impl
 
     @Override
     public Txn releaseLock(TxnKV kv) throws InterruptedException {
-//        List<String> useAddr = new ArrayList<>(addresses);
-//        useAddr.remove(String.valueOf(PORT_NUM));
-//        System.out.println("Starting to release Lock");
-//        System.out.println(lockManager);
-//
-//        if(lockManager.containsKey(kv.getKey())){
-//            lockManager.remove(kv.getKey());
-//        }
-//        System.out.print(useAddr);
-//        for(String addr: useAddr){
-//            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", Integer.parseInt(addr)).usePlaintext().build();
-//            LockServiceGrpc.LockServiceStub lockingSvc = LockServiceGrpc.newStub(channel);
-//            lockingSvc.unlock(kv, new UnlockCallBack());
-//        }
         latch = new CountDownLatch(4);
         System.out.println(lockManager);
 
@@ -126,22 +112,6 @@ public class LockingServiceImpl extends LockServiceGrpc.LockServiceImplBase impl
         System.out.println(lockManager);
         return kv.getTxn();
     }
-//    class UnlockCallBack implements io.grpc.stub.StreamObserver<Lock> {
-//        @Override
-//        public void onNext(Lock lock) {
-//            System.out.println("Commit Status:" + lock.getIsLocked());
-//        }
-//
-//        @Override
-//        public void onError(Throwable throwable) {
-//
-//        }
-//
-//        @Override
-//        public void onCompleted() {
-//            System.out.println("Unlock Request Sent");
-//        }
-//    }
 
     private class Notify implements FutureCallback<Lock> {
         CountDownLatch latch;
